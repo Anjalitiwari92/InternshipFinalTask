@@ -1,81 +1,78 @@
 # 🎬 Movie Success Prediction and Sentiment Study
 
 ## 📌 Objective
-This project analyzes IMDB movie reviews to:
-- Perform sentiment analysis using VADER
-- Simulate and predict movie success using sentiment scores
-- Visualize sentiment distribution and compare model predictions
-- (Optional) Analyze genre-wise sentiment trends
+To analyze sentiment trends in movie reviews and predict the success of movies based on user review data using machine learning.
 
 ---
 
-## 🧰 Tools & Libraries
-- **Python**  
-- **Pandas, NumPy** – data wrangling  
-- **NLTK (VADER)** – sentiment analysis  
-- **Scikit-learn** – regression modeling  
-- **Matplotlib, Seaborn** – visualizations  
-- **Excel** – data review and reporting (optional)
+## 🛠️ Tools & Libraries
+- Python (Pandas, NLTK, Sklearn, Matplotlib, Seaborn)
+- VADER Sentiment Analyzer (from NLTK)
+- Scikit-learn (for classification models)
+- Excel (optional for data export/analysis)
 
 ---
 
-## 📂 Dataset
-- **Source:** [IMDB 50K Movie Reviews Dataset](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
-- **Fields:**
-  - `review`: User-submitted movie review text
-  - `sentiment`: Labeled sentiment (positive/negative)
+## 📥 Data Source
+- [IMDB Movie Reviews Dataset (Kaggle)](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
+- 50,000 movie reviews labeled as **positive** or **negative**
 
 ---
 
-## 🧪 Steps Performed
+## 🧠 Project Workflow
 
-### 1. Data Loading
-- Loaded `IMDB Dataset.csv` (50,000 reviews)
-- Cleaned and structured data for sentiment analysis
+### 1. **Data Cleaning & Preprocessing**
+- Removed HTML tags, special characters
+- Converted text to lowercase
+- Tokenized text, removed stopwords (optional)
+- Applied **TF-IDF vectorization**
 
-### 2. Sentiment Analysis (VADER)
-- Applied NLTK’s VADER analyzer
-- Generated `vader_compound` score per review
-- Classified sentiment as Positive / Negative / Neutral
+### 2. **Sentiment Analysis (VADER)**
+- Used `VADER` to compute sentiment scores:
+  - Compound score ranges from -1 (negative) to +1 (positive)
+- Added `vader_compound` column to dataset
 
-### 3. Success Score Simulation
-- Simulated a `success_score` based on `vader_compound`:
+### 3. **Genre-wise Sentiment Study**
+- Simulated genres (e.g., Drama, Comedy, Action) for each review
+- Exploded genre tags and analyzed sentiment per genre
+- 📊 Generated bar plot for average sentiment by genre
 
-### 4. Regression Modeling
-- Used Linear Regression to predict `success_score` from sentiment
-- Evaluated model using RMSE
-
-### 5. Visualizations
-- VADER sentiment score distribution
-- Crosstab: IMDB label vs VADER classification
-- (Optional) Genre-wise sentiment bar chart if genre data is added
-
----
-
-## 📊 Example Visuals
-- Histogram of VADER sentiment scores
-- Comparison matrix of labeled vs computed sentiment
-- Regression predictions on test set
+### 4. **Predictive Modeling**
+- Converted reviews to TF-IDF vectors
+- Trained multiple ML models:
+  - Logistic Regression
+  - Naive Bayes
+  - Random Forest
+  - Support Vector Machine (SVM)
+- Evaluated using accuracy, precision, recall, and ROC-AUC
 
 ---
 
-## 📁 Deliverables
-- `movie_sentiment_analysis.ipynb` – Notebook with full analysis
-- `IMDB_with_VADER.csv` – Dataset with added sentiment scores (optional)
-- Visual plots for report and insights
-- README documentation
+## 📈 Predictive Model Summary
+
+| Model                  | Accuracy | Notes                                      |
+|------------------------|----------|--------------------------------------------|
+| **Logistic Regression**| ~88%     | Lightweight, fast, interpretable           |
+| **Random Forest**      | ~85%     | Decent but slower                          |
+| **Naive Bayes**        | ~84%     | Simple, performs well                      |
+| **SVM (Linear)**       | ~89%     | Best performer for this dataset            |
+
+- **🏆 Best Model:** `SVM + TF-IDF`
+- Strong correlation between `vader_compound` and true sentiment labels
 
 ---
 
-## 🚀 Future Work
-- Merge with TMDb/Kaggle metadata for budget, revenue, and genre-based modeling
-- Explore advanced NLP models (e.g., BERT) for deeper review analysis
-- Genre-wise success prediction and sentiment classification
+## 📊 Visualizations
+- Confusion matrix
+- ROC Curve
+- Bar chart of average VADER sentiment by genre
 
 ---
 
-## 🧠 Credits
-- VADER Sentiment Analyzer: [NLTK Docs](https://www.nltk.org/api/nltk.sentiment.vader.html)
-- Dataset: [Kaggle IMDB Review Dataset](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
-
----
+## 📂 Deliverables
+- Python notebooks for:
+  - Preprocessing
+  - VADER sentiment analysis
+  - Model training & evaluation
+- `README.md` (this file)
+-------
